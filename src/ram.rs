@@ -1,4 +1,4 @@
-const RAM_SIZE: usize = 1024 * 64;
+pub const RAM_SIZE: usize = 1024 * 64;
 
 pub struct Ram {
     ram: [u8; RAM_SIZE],
@@ -13,10 +13,6 @@ impl Ram {
             i += 1;
         }
         return ram;
-    }
-
-    pub fn get_ram_size() -> usize {
-        RAM_SIZE
     }
 
     pub fn get_byte(&self, index: usize) -> u8 {
