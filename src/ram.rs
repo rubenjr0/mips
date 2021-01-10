@@ -1,4 +1,4 @@
-pub const RAM_SIZE: usize = 1024 * 64;
+pub const RAM_SIZE: usize = 64 * 1024 * 1024;
 
 pub struct Ram {
     ram: [u8; RAM_SIZE],

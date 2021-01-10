@@ -19,10 +19,8 @@ fn main() {
     file.read_to_end(&mut rom).expect("Coudln't read file");
 
     let mut cpu = Cpu::new(rom);
-	// while cpu.can_run() {
-	for _ in 0..3 {
+	while cpu.can_run() {
 		let i = cpu.fetch();
-		println!("Executing {:#032b}", i);
 		cpu.execute(i);
 	}
 }

@@ -23,7 +23,6 @@ impl Cpu {
     pub fn fetch(&self) -> u32 {
         let index = self.pc as usize;
         let instruction = self.bus.fetch_from_ram(index);
-		println!("Got {:?}", instruction);
         return ((instruction[0] as u32) << 24)
             | ((instruction[1] as u32) << 16)
             | ((instruction[2] as u32) << 8)
@@ -31,13 +30,20 @@ impl Cpu {
     }
 
     pub fn execute(&mut self, instruction: u32) {
-        let opcode = instruction >> 26;
-		print!("opcode: {:#02x} -> ", opcode);
-		match opcode {
-			0x2 => println!("J"),
-			0x4 => println!("BEQ"),
-			0x0 => println!("ALU"),
-			_ => unimplemented!()
+		if instruction != 0 {
+			let opcode = (instruction >> 26) as u8;
+			let dir = instruction & 0x3FFFFFF;
+			print!("opcode: {:#02x} -> ", opcode);
+			match opcode {
+				0x2 => println!("J"),
+				0x4 => println!("BEQ"),
+				0x0 => println!("ALU"),
+				0x8 => println!("ADDI"),
+				0x23 => println!("LW"),
+				0x2B => println!("SW"),
+				0x3F => println!("HALT"),
+				_ => unimplemented!()
+			}
 		}
 		self.pc += 4;
     }
