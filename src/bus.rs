@@ -5,11 +5,19 @@ pub struct Bus {
 }
 
 impl Bus {
-    pub fn new(rom: Vec<u8>) -> Bus {
-        Bus { ram: Ram::new(rom) }
+    pub fn new() -> Bus {
+        Bus { ram: Ram::new() }
     }
 
-    pub fn fetch_from_ram(&self, index: usize) -> [u8; 4] {
-        return self.ram.get_word(index);
+    pub fn read_byte(&self, index: usize) -> u8 {
+        self.ram.read_byte(index)
+    }
+
+    pub fn read_word(&self, index: usize) -> u32 {
+        self.ram.read_word(index)
+    }
+
+    pub fn write_word(&mut self, index: usize, data: u32) {
+        self.ram.write_word(index, data);
     }
 }
