@@ -9,6 +9,7 @@ Reduced MIPS emulator written in Rust, plus a rom_writer.py script.
 ## RAM
 - 4 kB RAM
 - 32-bit words
+- Big Endian
 
 ## TODO
 ### Short term
